@@ -1,0 +1,43 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Compiled output
+/build
+/out
+/.next
+/node_modules
+/.cache
+/yarn-error.log
+
+# IDE files
+.idea
+.vscode
+
+# Dependencies
+package-lock.json
+yarn.lock
+
+# Testing
+/coverage
+/coverage-final.json
+
+# Web3
+/blockchain-abi.json
+/hardhat-*.json
+
+# Solidity
+/contracts/abi
+/contracts/artifacts
+/contracts/build
+/contracts/coverage
+/contracts/types
+/coverage
+
+# TypeScript
+*.tsbuildinfo
+
+# React
+/node_modules
+/public
+
