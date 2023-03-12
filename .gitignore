@@ -47,3 +47,6 @@ yarn.lock
 /build-manifest.json
 /failed-build.webpack-plugin.js
 /webpack-*
+
+# foundry
+cache
