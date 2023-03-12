@@ -41,3 +41,9 @@ yarn.lock
 /node_modules
 /public
 
+# Next.js
+/.next/
+/*.log
+/build-manifest.json
+/failed-build.webpack-plugin.js
+/webpack-*
