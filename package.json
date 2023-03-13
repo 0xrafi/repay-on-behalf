@@ -2,14 +2,15 @@
   "name": "repay-on-behalf",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "dev": "cd frontend && next dev",
+    "build": "cd frontend && next build",
+    "start": "cd frontend && next start",
     "lint": "next lint",
     "typecheck": "tsc",
     "prettier": "prettier --write '**/*.ts' '**/*.tsx'"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.14",
     "ethers": "^5.7.2",
     "next": "13.2.4",
     "react": "18.2.0",
