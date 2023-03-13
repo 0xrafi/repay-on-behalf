@@ -5,8 +5,8 @@ Thumbs.db
 # Compiled output
 /build
 /out
-/.next
-/node_modules
+**/.next
+**/node_modules
 /.cache
 /yarn-error.log
 
@@ -38,11 +38,11 @@ yarn.lock
 *.tsbuildinfo
 
 # React
-/node_modules
+**/node_modules
 /public
 
 # Next.js
-/.next/
+**/.next/
 /*.log
 /build-manifest.json
 /failed-build.webpack-plugin.js

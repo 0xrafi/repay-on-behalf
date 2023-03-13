@@ -2,9 +2,9 @@
   "name": "repay-on-behalf",
   "private": true,
   "scripts": {
-    "dev": "cd frontend && next dev",
-    "build": "cd frontend && next build",
-    "start": "cd frontend && next start",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc",
     "prettier": "prettier --write '**/*.ts' '**/*.tsx'"
