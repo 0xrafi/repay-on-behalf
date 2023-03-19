@@ -18,7 +18,7 @@ async function repayOnBehalfOf(borrower: string, amount: ethers.BigNumber) {
 const myContract = new ethers.Contract(CONTRACT_ADDRESS, MyContract.abi, ethers.getDefaultProvider());
 
 async function handleClick() {
-  const borrower = '<borrower address>';
+  const borrower = '<borrower address>';      
   const amount = ethers.utils.parseUnits('<amount in ether>', 'ether');
   repayOnBehalfOf(borrower, amount);
 }
