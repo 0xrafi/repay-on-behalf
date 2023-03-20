@@ -1,6 +1,7 @@
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: BUSL-1.1
+pragma solidity ^0.8.16;
 
-import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "openzeppelin/token/ERC20/IERC20.sol";
 
 interface IComptroller {
     function enterMarkets(address[] calldata cTokens) external returns (uint[] memory);
@@ -8,6 +9,10 @@ interface IComptroller {
 
 interface ICToken {
     function repayBorrowBehalf(address borrower, uint repayAmount) external returns (uint);
+}
+
+interface CErc20Interface is ICToken {
+    function underlying() external view returns (address);
 }
 
 contract RepayOnBehalf {
@@ -27,7 +32,7 @@ contract RepayOnBehalf {
     }
 
     function repayBorrowOnBehalf(address borrower, uint256 repayAmount) external {
-        ICToken cToken = ICToken(cTokenAddress);
+        CErc20Interface cToken = CErc20Interface(cTokenAddress);
         IERC20 underlyingToken = IERC20(cToken.underlying());
 
         underlyingToken.transferFrom(msg.sender, address(this), repayAmount);
