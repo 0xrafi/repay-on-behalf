@@ -4,7 +4,7 @@ Thumbs.db
 
 # Compiled output
 /build
-/out
+out
 **/.next
 **/node_modules
 /.cache
