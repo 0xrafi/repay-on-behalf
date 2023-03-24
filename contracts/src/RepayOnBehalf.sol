@@ -9,6 +9,7 @@ interface IComptroller {
 
 interface ICToken {
     function repayBorrowBehalf(address borrower, uint repayAmount) external returns (uint);
+    function borrowBalanceCurrent(address account) external returns (uint);
 }
 
 interface CErc20Interface is ICToken {
