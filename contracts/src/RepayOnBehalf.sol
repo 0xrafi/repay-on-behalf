@@ -42,4 +42,9 @@ contract RepayOnBehalf {
         uint result = cToken.repayBorrowBehalf(borrower, repayAmount);
         require(result == 0, "Repay failed");
     }
+
+    function getCtokenAddress() public view returns (address) {
+    return cTokenAddress;
+}
+
 }

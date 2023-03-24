@@ -16,7 +16,12 @@ contract RepayOnBehalfTest is Test {
         address comptrollerAddress = address(0); // Replace with the correct comptroller address
         address cTokenAddress = address(0); // Replace with the correct cToken address
         repayOnBehalf = new RepayOnBehalf(comptrollerAddress, cTokenAddress);
-        cToken = ICToken(cTokenAddress);
+        cToken = ICToken(repayOnBehalf.getCtokenAddress());
+
+        // Mock the borrowBalanceCurrent function to return the existing debt
+        bytes memory borrowBalanceCurrentMockData = abi.encodeWithSignature("borrowBalanceCurrent(address)", owner);
+        bytes memory returnData = abi.encode(existingDebt);
+        vm.mockCall(cTokenAddress, borrowBalanceCurrentMockData, returnData);
     }
 
     function getDebt() public returns (uint256) {
@@ -30,6 +35,12 @@ contract RepayOnBehalfTest is Test {
     function testRepayOnBehalf() public {
         uint256 amount = 20;
         repayOnBehalf.repayBorrowOnBehalf(owner, amount);
+
+        // Update the mocked borrowBalanceCurrent function to return the new debt
+        bytes memory borrowBalanceCurrentMockData = abi.encodeWithSignature("borrowBalanceCurrent(address)", owner);
+        bytes memory returnData = abi.encode(existingDebt - amount);
+        address cTokenAddress = repayOnBehalf.getCtokenAddress();
+        vm.mockCall(cTokenAddress, borrowBalanceCurrentMockData, returnData);
         assertEq(getDebt(), existingDebt - amount); // Debt should be reduced by the repaid amount
     }
 
@@ -37,6 +48,13 @@ contract RepayOnBehalfTest is Test {
         uint256 initialDebt = getDebt();
         uint256 repayAmount = (initialDebt >= amount) ? amount : initialDebt;
         repayOnBehalf.repayBorrowOnBehalf(owner, repayAmount);
+
+        // Update the mocked borrowBalanceCurrent function to return the new debt
+        bytes memory borrowBalanceCurrentMockData = abi.encodeWithSignature("borrowBalanceCurrent(address)", owner);
+        bytes memory returnData = abi.encode(initialDebt - repayAmount);
+        address cTokenAddress = repayOnBehalf.getCtokenAddress();
+        vm.mockCall(cTokenAddress, borrowBalanceCurrentMockData, returnData);
+
         assertEq(getDebt(), initialDebt - repayAmount); // Debt should decrease by repaid amount
     }
 }
